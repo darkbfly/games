@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('  • ESC - 返回主菜单');
     console.log('  • P - 暂停/继续游戏');
     console.log('  • 支持鼠标拖拽和手柄操作');
-    console.log('🎯 包含游戏: 猜颜色');
+    console.log('🎯 包含游戏: 贪吃蛇、打砖块、太空射击、猜颜色');
 });
 
 // 防止页面刷新时的意外行为

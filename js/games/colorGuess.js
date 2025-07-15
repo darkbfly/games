@@ -29,7 +29,7 @@ class ColorGuessGame extends Phaser.Scene {
         const height = this.sys.game.config.height;
 
         // 检测是否为移动设备
-        this.isMobile = this.sys.game.device.input.touch || width < 768;
+        this.isMobile = this.sys.game.device.input.touch && width < 768;
 
         // 重置所有游戏状态
         this.resetGameState();

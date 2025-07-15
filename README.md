@@ -54,11 +54,39 @@ docker stop phaser-games && docker rm phaser-games
 
 访问地址：http://localhost:8080
 
-### 方法二：直接打开
+### 方法二：Cloudflare Workers 部署
+
+#### 快速部署
+```bash
+# Windows
+deploy-cf.bat setup
+deploy-cf.bat deploy
+
+# Linux/macOS
+chmod +x deploy-cf.sh
+./deploy-cf.sh setup
+./deploy-cf.sh deploy
+```
+
+#### 手动部署
+```bash
+# 安装依赖并登录
+npm install
+npx wrangler auth login
+
+# 构建并部署
+npm run deploy
+```
+
+访问地址：https://your-worker-name.your-subdomain.workers.dev
+
+详细说明请查看：[CLOUDFLARE_GUIDE.md](CLOUDFLARE_GUIDE.md)
+
+### 方法三：直接打开
 1. 下载所有文件到本地目录
 2. 双击打开 `index.html` 文件
 
-### 方法三：本地服务器
+### 方法四：本地服务器
 1. 在项目目录下运行以下命令之一：
    ```bash
    # Python 3
