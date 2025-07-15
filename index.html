@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多游戏合集 - Phaser.js</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="menu-container">
+            <h1>游戏合集</h1>
+
+            <!-- 游戏选择器容器 -->
+            <div id="game-selector">
+                <div id="game-carousel">
+                    <div class="game-card active" data-game="snake">
+                        <div class="game-icon">🐍</div>
+                        <h3>贪吃蛇</h3>
+                        <p>经典的贪吃蛇游戏！控制蛇吃食物，避免撞到墙壁或自己的身体。</p>
+                        <div class="game-controls">
+                            <span>控制：方向键 / WASD</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-game="breakout">
+                        <div class="game-icon">🧱</div>
+                        <h3>打砖块</h3>
+                        <p>经典的打砖块游戏！控制挡板反弹球，击破屏幕上的所有砖块。</p>
+                        <div class="game-controls">
+                            <span>控制：鼠标 / 方向键</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-game="shooter">
+                        <div class="game-icon">🚀</div>
+                        <h3>太空射击</h3>
+                        <p>激动人心的太空射击游戏！控制飞船在太空中战斗，射击敌人。</p>
+                        <div class="game-controls">
+                            <span>控制：方向键移动 / 空格射击</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-game="colorguess">
+                        <div class="game-icon">🎨</div>
+                        <h3>猜颜色</h3>
+                        <p>经典的逻辑推理游戏！通过分析提示猜出隐藏的颜色组合。</p>
+                        <div class="game-controls">
+                            <span>控制：鼠标点击 / 数字键1-6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 导航指示器 -->
+                <div id="game-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
+                    <span class="indicator" data-index="3"></span>
+                </div>
+
+                <!-- 导航按钮 -->
+                <button id="prev-btn" class="nav-btn">‹</button>
+                <button id="next-btn" class="nav-btn">›</button>
+            </div>
+
+            <!-- 开始游戏按钮 -->
+            <div id="start-game-container">
+                <button id="start-game-btn" class="start-btn">开始游戏</button>
+            </div>
+
+            <!-- 控制提示 -->
+            <div id="control-hints">
+                <p>🎮 使用方向键、鼠标拖拽或手柄选择游戏</p>
+                <p>按 Enter 或点击开始游戏</p>
+            </div>
+        </div>
+        <div id="game-canvas-container" style="display: none;">
+            <div id="game-ui" style="display: none;">
+                <div id="game-controls">
+                    <button id="pause-btn">暂停</button>
+                    <button id="back-btn">返回菜单</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏脚本 -->
+    <script src="js/gameManager.js"></script>
+    <script src="js/gameSelector.js"></script>
+    <script src="js/games/snake.js"></script>
+    <script src="js/games/breakout.js"></script>
+    <script src="js/games/shooter.js"></script>
+    <script src="js/games/colorGuess.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
