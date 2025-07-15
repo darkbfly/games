@@ -29,7 +29,6 @@ jobs:
       - name: Build Docker image
         run: |
           docker build . --tag $IMAGE_NAME:$TAG --tag $IMAGE_NAME:latest
-        working-directory: client
 
       - name: Push Docker image
         run: |
