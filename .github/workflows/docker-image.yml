@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main # 当推送到 main 分支时触发
-    paths:
-      - "client/**" # 只有 client 文件夹内的变化才会触发
   workflow_dispatch: # 手动运行支持
 
 env:
