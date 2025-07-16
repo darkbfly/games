@@ -197,7 +197,7 @@ class ColorGuessGame extends Phaser.Scene {
     setupButtonEvents(backButton, restartButton) {
         backButton.on('pointerdown', () => {
             this.resetAllDragStates();
-            this.scene.start('MainMenu');
+            this.returnToMainMenu();
         });
 
         backButton.on('pointerover', () => {
@@ -646,11 +646,57 @@ class ColorGuessGame extends Phaser.Scene {
         // 检查游戏结果
         if (this.checkWin(guess)) {
             this.gameOver = true;
-            setTimeout(() => {
-                alert('恭喜！你猜对了！');
-                this.resetAllDragStates();
-                this.scene.start('MainMenu');
-            }, 500);
+            this.showCorrectAnswer();
+
+            // 显示游戏结束提示，但不跳转场景
+            const width = this.sys.game.config.width;
+            const height = this.sys.game.config.height;
+
+            // 创建半透明背景
+            const overlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.7);
+            overlay.setDepth(2000);
+
+            // 游戏结束文字
+            const gameOverText = this.add.text(width / 2, height / 2 - 50, '恭喜你猜对了！', {
+                fontSize: '48px',
+                fill: '#ff0000',
+                fontWeight: 'bold',
+                fontFamily: 'Microsoft YaHei, Arial, sans-serif'
+            }).setOrigin(0.5);
+            gameOverText.setDepth(2001);
+
+            const hintText = this.add.text(width / 2, height / 2 + 10, '正确答案已显示在游戏板下方', {
+                fontSize: '24px',
+                fill: '#ffffff',
+                fontFamily: 'Microsoft YaHei, Arial, sans-serif'
+            }).setOrigin(0.5);
+            hintText.setDepth(2001);
+
+            // 点击任意位置继续的提示
+            const continueText = this.add.text(width / 2, height / 2 + 60, '点击任意位置继续游戏', {
+                fontSize: '20px',
+                fill: '#ffff00',
+                fontFamily: 'Microsoft YaHei, Arial, sans-serif'
+            }).setOrigin(0.5);
+            continueText.setDepth(2001);
+
+            // 添加闪烁效果
+            this.tweens.add({
+                targets: continueText,
+                alpha: 0.3,
+                duration: 800,
+                yoyo: true,
+                repeat: -1
+            });
+
+            // 点击继续游戏
+            overlay.setInteractive();
+            overlay.on('pointerdown', () => {
+                overlay.destroy();
+                gameOverText.destroy();
+                hintText.destroy();
+                continueText.destroy();
+            });
         } else if (this.currentRowIndex >= 7) {
             this.gameOver = true;
             // 显示正确答案
@@ -878,7 +924,7 @@ class ColorGuessGame extends Phaser.Scene {
 
         this.time.delayedCall(2000, () => {
             this.resetAllDragStates();
-            this.scene.start('MainMenu');
+            this.returnToMainMenu();
         });
     }
 
@@ -937,5 +983,21 @@ class ColorGuessGame extends Phaser.Scene {
             hintText.destroy();
             continueText.destroy();
         });
+    }
+
+    returnToMainMenu() {
+        // 通过GameManager返回主菜单
+        if (this.gameManager) {
+            this.gameManager.showMenu();
+        } else {
+            // 如果没有GameManager引用，尝试通过全局变量
+            if (typeof gameManager !== 'undefined' && gameManager) {
+                gameManager.showMenu();
+            } else {
+                console.error('无法返回主菜单：GameManager未找到');
+                // 作为后备方案，重新加载页面
+                window.location.reload();
+            }
+        }
     }
 }
