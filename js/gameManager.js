@@ -101,6 +101,10 @@ class GameManager {
                 gameScene = new DotsAndBoxesGame();
                 this.updateGameInfo('点格棋', '两人轮流画线，占领更多格子的一方获胜！');
                 break;
+            case 'yahtzee':
+                gameScene = new YahtzeeGame();
+                this.updateGameInfo('快艇骰子', '投掷骰子，获得不同组合的分数，挑战最高分！');
+                break;
             default:
                 console.error('未知的游戏类型:', gameType);
                 return;

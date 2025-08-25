@@ -1,7 +1,7 @@
 class GameSelector {
     constructor() {
         this.currentIndex = 0;
-        this.games = ['snake', 'breakout', 'shooter', 'colorguess', 'dotsandboxes'];
+        this.games = ['snake', 'breakout', 'shooter', 'colorguess', 'dotsandboxes', 'yahtzee'];
         this.isTransitioning = false;
         this.touchStartX = 0;
         this.touchEndX = 0;
@@ -234,7 +234,7 @@ class GameSelector {
         this.isTransitioning = true;
 
         // 更新轮播图位置
-        const translateX = -this.currentIndex * 20;
+        const translateX = -this.currentIndex * 100;
         this.carousel.style.transform = `translateX(${translateX}%)`;
 
         // 更新卡片状态
