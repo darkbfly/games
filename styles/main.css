@@ -57,11 +57,11 @@ h1 {
 #game-carousel {
     display: flex;
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    width: 400%;
+    width: 500%;
 }
 
 .game-card {
-    width: 25%;
+    width: 20%;
     padding: 30px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);

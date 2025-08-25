@@ -97,6 +97,10 @@ class GameManager {
                 gameScene = new ColorGuessGame();
                 this.updateGameInfo('猜颜色', '通过逻辑推理猜出隐藏的颜色组合！');
                 break;
+            case 'dotsandboxes':
+                gameScene = new DotsAndBoxesGame();
+                this.updateGameInfo('点格棋', '两人轮流画线，占领更多格子的一方获胜！');
+                break;
             default:
                 console.error('未知的游戏类型:', gameType);
                 return;
